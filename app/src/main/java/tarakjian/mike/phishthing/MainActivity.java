@@ -1,5 +1,6 @@
 package tarakjian.mike.phishthing;
 
+import android.media.Image;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -12,6 +13,7 @@ import android.webkit.WebViewClient;
 import android.webkit.WebChromeClient;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -21,24 +23,37 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final ImageButton playbutton = (ImageButton) findViewById(R.id.playbutton);
         final SeekBar seekbar = (SeekBar) findViewById(R.id.seekBar);
+        final ImageButton prevbutton = (ImageButton) findViewById(R.id.prevbutton);
+        final ImageButton playbutton = (ImageButton) findViewById(R.id.playbutton);
+        final ImageButton nextbutton = (ImageButton) findViewById(R.id.nextbutton);
+        final TextView songtitle = (TextView) findViewById(R.id.songtitle);
 
         final WebView myWebView = (WebView) findViewById(R.id.webview);
         myWebView.setWebChromeClient(new WebChromeClient());
         myWebView.setWebViewClient(new WebViewClient() {
 
+            @Override
             public void onPageFinished(final WebView view, String url) {
                 view.evaluateJavascript("document.getElementsByTagName('header')[0].style.display='none';", null);
                 view.evaluateJavascript("document.getElementById('main').style.marginTop='0px';", null);
-                view.evaluateJavascript("App.player.playNext();", null);
-                view.evaluateJavascript("App.player_view.togglePause();", null);
+                //view.evaluateJavascript("App.player.playNext();", null);
+                //view.evaluateJavascript("App.player_view.togglePause();", null);
                 //view.evaluateJavascript("App.player.play();", null);
 
+                // set page title
                 view.evaluateJavascript("App.router.currentView.pageTitle();", new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String s) {
-                        setTitle(s.substring(1, s.length() - 2));
+                        setTitle(s.substring(1, s.length() - 1));
+                    }
+                });
+
+                prevbutton.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        view.evaluateJavascript("App.player_view.playPrev();", null);
                     }
                 });
 
@@ -50,6 +65,39 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
 
+                nextbutton.setOnClickListener(new View.OnClickListener()
+                {
+                    public void onClick(View v)
+                    {
+                        view.evaluateJavascript("App.player_view.playNext();", null);
+                    }
+                });
+
+            }
+
+            // on url change, e.g. song change
+            @Override
+            public void onLoadResource(WebView view, String url) {
+                // set seek bar duration, doesn't actually work
+                view.evaluateJavascript("App.player.get('currentTrack').sound.duration;", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String s) {
+                        try {
+                            seekbar.setMax(Integer.parseInt(s));
+                        } catch (NumberFormatException e) {}
+                    }});
+
+                // set song title
+                view.evaluateJavascript("App.player.get('currentTrack').get('title');", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String s) {
+                        if (s.length() > 0)
+                            songtitle.setText(s.substring(1, s.length() - 1));
+                    }
+                });
+
+                // hide player bar
+                view.evaluateJavascript("document.getElementById('player').style.display='none';", null);
             }
 
             //App.player.get('currentTrack')
@@ -86,8 +134,11 @@ public class MainActivity extends AppCompatActivity {
                 myWebView.evaluateJavascript("App.player.get('currentTrack').sound.duration;", new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String s) {
-                        seekbar.setMax(Integer.parseInt(s));
-                    }});
+                        try {
+                            seekbar.setMax(Integer.parseInt(s));
+                        } catch (NumberFormatException e) {}
+                    }
+                });
             }
 
             @Override
@@ -96,6 +147,5 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
 
 }
