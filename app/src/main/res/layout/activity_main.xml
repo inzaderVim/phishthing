@@ -9,70 +9,70 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="43dp">
+        android:orientation="vertical">
 
         <WebView
             android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="404dp"
-            tools:layout_editor_absoluteX="129dp"
-            tools:layout_editor_absoluteY="137dp">
+            android:layout_height="409dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
         </WebView>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="108dp"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="403dp">
-
-        <TextView
-            android:id="@+id/songtitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Nothing playing"
-            android:textColor="?android:attr/textColorPrimaryInverse"
-            android:textSize="24sp"
-            app:fontFamily="sans-serif-condensed" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal">
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="403dp">
 
-            <ImageButton
-                android:id="@+id/prevbutton"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/songtitle"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_media_previous" />
+                android:gravity="center"
+                android:text="Nothing playing"
+                android:textColor="@android:color/black"
+                android:textSize="24sp"
+                app:fontFamily="sans-serif-condensed" />
 
-            <ImageButton
-                android:id="@+id/playbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_media_play" />
+            <SeekBar
+                android:id="@+id/seekBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
-            <ImageButton
-                android:id="@+id/nextbutton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                app:srcCompat="@android:drawable/ic_media_next"
-                tools:layout_editor_absoluteX="199dp"
-                tools:layout_editor_absoluteY="199dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/prevbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_media_previous" />
+
+                <ImageButton
+                    android:id="@+id/playbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_media_play" />
+
+                <ImageButton
+                    android:id="@+id/nextbutton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    app:srcCompat="@android:drawable/ic_media_next"
+                    tools:layout_editor_absoluteX="199dp"
+                    tools:layout_editor_absoluteY="199dp" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

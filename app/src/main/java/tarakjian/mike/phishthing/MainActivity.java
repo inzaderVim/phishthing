@@ -1,6 +1,5 @@
 package tarakjian.mike.phishthing;
 
-import android.media.Image;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
