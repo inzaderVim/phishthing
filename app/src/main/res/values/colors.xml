@@ -7,4 +7,5 @@
     <color name="background">#0f2340</color>
     <color name="playerControls">#db5705</color>
     <color name="playerControlsDark">#db1f05</color>
+    <color name="playerBar">#25585a</color>
 </resources>

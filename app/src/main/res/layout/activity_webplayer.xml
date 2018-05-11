@@ -25,30 +25,32 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_alignParentBottom="true"
-            android:orientation="vertical"
             android:layout_height="wrap_content"
-            android:layout_weight="5">
+            android:layout_alignParentBottom="true"
+            android:layout_weight="5"
+            android:background="@color/playerBar"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/songtitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Songname"
+                android:maxLines="1"
+                android:text="@string/song_name_idle"
                 android:textColor="@android:color/white"
                 android:textSize="24sp"
-                app:fontFamily="sans-serif-condensed"
-                android:maxLines="1" />
+                app:fontFamily="sans-serif-condensed" />
 
             <TextView
                 android:id="@+id/location"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Location"
+                android:maxLines="1"
+                android:text="@string/location_idle"
                 android:textColor="@android:color/white"
-                android:maxLines="1" />
+                app:fontFamily="sans-serif-condensed" />
 
             <SeekBar
                 android:id="@+id/seekBar"

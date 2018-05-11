@@ -2,4 +2,6 @@
     <string name="app_name">phishthing</string>
     <string name="title_activity_webplayer">WebPlayer</string>
     <string name="show_date_hint">Enter show date</string>
+    <string name="song_name_idle">Nothing playing</string>
+    <string name="location_idle">-</string>
 </resources>
