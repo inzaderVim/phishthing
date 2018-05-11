@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">phishthing</string>
+    <string name="title_activity_webplayer">WebPlayer</string>
+    <string name="show_date_hint">Enter show date</string>
 </resources>
