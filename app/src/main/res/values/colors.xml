@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#31cb79</color>
+    <color name="colorPrimaryDark">#329c64</color>
+    <color name="colorAccent">#e8b72b</color>
+    <color name="colorAccentDark">#c99a12</color>
+    <color name="background">#0f2340</color>
+    <color name="playerControls">#db5705</color>
+    <color name="playerControlsDark">#db1f05</color>
 </resources>

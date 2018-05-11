@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         final ImageButton playbutton = (ImageButton) findViewById(R.id.playbutton);
         final ImageButton nextbutton = (ImageButton) findViewById(R.id.nextbutton);
         final TextView songtitle = (TextView) findViewById(R.id.songtitle);
+        final TextView location = (TextView) findViewById(R.id.location);
 
         final WebView myWebView = (WebView) findViewById(R.id.webview);
         myWebView.setWebChromeClient(new WebChromeClient());
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                 view.evaluateJavascript("App.router.currentView.pageTitle();", new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String s) {
-                        setTitle(s.substring(1, s.length() - 1));
+                        setTitle(s.substring(1, 12)); //TODO, 12 catches the date since its always mm/dd/yyyy
                     }
                 });
 
@@ -90,8 +91,21 @@ public class MainActivity extends AppCompatActivity {
                 view.evaluateJavascript("App.player.get('currentTrack').get('title');", new ValueCallback<String>() {
                     @Override
                     public void onReceiveValue(String s) {
-                        if (s.length() > 0)
+                        if (s.length() > 0 && !s.equals("null"))
                             songtitle.setText(s.substring(1, s.length() - 1));
+                        else
+                            songtitle.setText("Nothing playing"); // TODO ref
+                    }
+                });
+
+                // set location
+                view.evaluateJavascript("App.player.get('playlist').show.get('location');", new ValueCallback<String>() {
+                    @Override
+                    public void onReceiveValue(String s) {
+                        if (s.length() > 0 && !s.equals("null"))
+                            location.setText(s.substring(1, s.length() - 1));
+                        else
+                            location.setText("-");
                     }
                 });
 
@@ -107,7 +121,9 @@ public class MainActivity extends AppCompatActivity {
             //App.player.get("currentTrack").sound.setPosition(X)
             //App.player.get("currentTrack").sound.position
             //App.player.get("currentTrack").sound.duration
-            //
+            //App.player.get("playlist").show.get("location")
+            //App.player.get("playlist").show.get("show_date")
+            //App.router.currentView.pageTitle()
 
         });
 
@@ -120,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setCacheMode(WebSettings.LOAD_DEFAULT);
         webSettings.setDatabaseEnabled(true);
 
-        myWebView.loadUrl("http://www.phishtracks.com/shows/2010-08-09");
+        myWebView.loadUrl("http://www.phishtracks.com/shows/1997-12-07");
 
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override

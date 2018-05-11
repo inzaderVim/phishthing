@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -34,10 +35,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Nothing playing"
-                android:textColor="@android:color/black"
+                android:text="Songname"
+                android:textColor="@android:color/white"
                 android:textSize="24sp"
-                app:fontFamily="sans-serif-condensed" />
+                app:fontFamily="sans-serif-condensed"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Location"
+                android:textColor="@android:color/white"
+                android:maxLines="1" />
 
             <SeekBar
                 android:id="@+id/seekBar"
@@ -54,6 +65,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/playerControlsDark"
                     app:srcCompat="@android:drawable/ic_media_previous" />
 
                 <ImageButton
@@ -61,6 +73,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/playerControls"
                     app:srcCompat="@android:drawable/ic_media_play" />
 
                 <ImageButton
@@ -68,6 +81,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:background="@color/playerControlsDark"
                     app:srcCompat="@android:drawable/ic_media_next"
                     tools:layout_editor_absoluteX="199dp"
                     tools:layout_editor_absoluteY="199dp" />
